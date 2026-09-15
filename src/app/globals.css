@@ -1,0 +1,307 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --color-ink: #171717;
+  --color-ink-soft: #525252;
+  --color-mute: #737373;
+  --color-paper: #fafafa;
+  --color-paper-2: #f4f4f5;
+  --color-surface: #ffffff;
+  --color-line: #ebebeb;
+  --color-line-strong: #d4d4d4;
+  --color-accent: #5b54f5;
+  --color-accent-hover: #4f48e6;
+  --color-accent-soft: #eeedfe;
+  --color-accent-deep: #4338ca;
+  --color-warn: #b45309;
+  --color-warn-soft: #fff7ed;
+  --color-danger: #e11d48;
+  --color-danger-soft: #fff1f2;
+  --color-ok: #0f766e;
+  --color-ok-soft: #f0fdfa;
+  --color-info: #0284c7;
+  --color-info-soft: #f0f9ff;
+  --color-sidebar: #ffffff;
+  --color-sidebar-edge: #f0f0f0;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+@layer base {
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    letter-spacing: -0.011em;
+    font-feature-settings: "ss01" on, "cv11" on;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  a,
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  label:has(input[type="file"], input[type="checkbox"], input[type="radio"]),
+  select:not(:disabled),
+  summary {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  [disabled],
+  [aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+
+  button {
+    font: inherit;
+    color: inherit;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-accent) 18%, white);
+  }
+}
+
+@keyframes wb-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes wb-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@keyframes wb-rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.wb-rise {
+  animation: wb-rise 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.wb-panel {
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+}
+
+.wb-input {
+  width: 100%;
+  height: 2.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  padding: 0 0.75rem;
+  font-size: 0.8125rem;
+  color: var(--color-ink);
+  outline: none;
+  transition:
+    border-color 0.12s ease,
+    box-shadow 0.12s ease,
+    background 0.12s ease;
+}
+
+textarea.wb-input {
+  height: auto;
+  padding: 0.6rem 0.75rem;
+  border-radius: var(--radius-md);
+}
+
+.wb-input::placeholder {
+  color: #a3a3a3;
+}
+
+.wb-input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(91, 84, 245, 0.12);
+}
+
+.wb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  border-radius: var(--radius-md);
+  padding: 0.45rem 0.9rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: -0.011em;
+  cursor: pointer;
+  transition:
+    background 0.12s ease,
+    color 0.12s ease,
+    opacity 0.12s ease,
+    border-color 0.12s ease;
+}
+
+.wb-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.wb-btn-sm {
+  padding: 0.28rem 0.7rem;
+  font-size: 0.75rem;
+}
+
+.wb-btn-primary {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.wb-btn-primary:hover:not(:disabled),
+.wb-btn-primary:active:not(:disabled),
+a.wb-btn-primary:visited,
+a.wb-btn-primary:hover,
+a.wb-btn-primary:active {
+  background: var(--color-accent-hover);
+  color: #fff;
+}
+
+.wb-btn-ghost {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  border: 1px solid var(--color-line);
+}
+
+.wb-btn-ghost:hover:not(:disabled),
+.wb-btn-ghost:active:not(:disabled) {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  border-color: var(--color-line-strong);
+}
+
+.wb-btn-quiet {
+  background: transparent;
+  color: var(--color-ink-soft);
+  border: none;
+  padding-left: 0.65rem;
+  padding-right: 0.65rem;
+}
+
+.wb-btn-quiet:hover:not(:disabled) {
+  color: var(--color-ink);
+  background: var(--color-paper-2);
+}
+
+.wb-link-action {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.2rem;
+  margin: -0.28rem -0.4rem;
+  padding: 0.28rem 0.4rem;
+  border-radius: 8px;
+  white-space: nowrap;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--color-mute);
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.wb-link-action:hover {
+  color: var(--color-ink);
+  background: var(--color-paper-2);
+}
+
+.wb-link-action-accent {
+  color: var(--color-accent);
+  font-size: 0.75rem;
+}
+
+.wb-link-action-accent:hover {
+  color: var(--color-accent-deep);
+  background: var(--color-accent-soft);
+}
+
+.wb-link-action-ok {
+  color: var(--color-ok);
+}
+
+.wb-link-action-ok:hover {
+  color: var(--color-ok);
+  background: var(--color-ok-soft);
+}
+
+.wb-link-action-danger {
+  color: var(--color-danger);
+}
+
+.wb-link-action-danger:hover {
+  color: var(--color-danger);
+  background: var(--color-danger-soft);
+}
+
+.wb-composer {
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  transition:
+    border-color 0.12s ease,
+    box-shadow 0.12s ease;
+}
+
+.wb-composer:focus-within {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(91, 84, 245, 0.12);
+}
+
+.wb-spinner {
+  display: inline-block;
+  border-radius: 999px;
+  border: 2px solid var(--color-line);
+  border-top-color: var(--color-accent);
+  animation: wb-spin 0.7s linear infinite;
+}
+
+.wb-skeleton {
+  border-radius: 10px;
+  background: linear-gradient(
+    90deg,
+    var(--color-paper-2) 0%,
+    #f8fafc 50%,
+    var(--color-paper-2) 100%
+  );
+  background-size: 200% 100%;
+  animation: wb-pulse 1.4s ease-in-out infinite;
+}
